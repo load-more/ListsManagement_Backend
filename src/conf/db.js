@@ -6,7 +6,8 @@ MYSQL_CONF = {
   password: 'jiayou',
   config: {
     host: 'localhost',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    timezone: '+08:00'
   }
 }
 
