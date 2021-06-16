@@ -30,5 +30,9 @@ module.exports = {
   fileSizeErrorInfo: {
     errno: 10008,
     message: '文件尺寸过大'
+  },
+  createListErrorInfo: {
+    errno: 10009,
+    message: '创建列表失败'
   }
 }
