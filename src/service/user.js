@@ -30,11 +30,17 @@ async function getAllListsService(userid) {
     },
     include: [
       {
-        association: User.hasMany(List, {}),
+        association: User.hasMany(List, {
+          foreignKey: 'userid'
+        }),
+        include: [
+          {
+            association: List.hasMany(Item, {
+              foreignKey: 'listid'
+            }),
+          }
+        ]
       },
-      {
-        association: List.hasMany(Item, {}),
-      }
     ]
   })
   if (!rst.count) {
@@ -49,17 +55,13 @@ async function getAllListsService(userid) {
   temp.lists.forEach(item => {
     const temp = item.dataValues
     temp.items = []
+    item.items.forEach(i => {
+      temp.items.push(i.dataValues)
+    })
     res.lists.push(temp)
   })
-  temp.items.forEach(item => {
-    const temp = item.dataValues
-    res.lists.forEach(i => {
-      if (i.id === temp.listid) {
-        i.items.push(temp)
-      }
-    })
-  })
-  return res
+  console.log(res.lists[2].items);
+  // return res
 }
 
 module.exports = {
