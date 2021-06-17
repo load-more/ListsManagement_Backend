@@ -1,4 +1,6 @@
+const List = require('../db/model/list')
 const User = require('../db/model/user')
+const Item = require('../db/model/item')
 
 async function getUserInfo(username, password) {
   const whereOpt = { username } // 默认使用用户名查询
@@ -20,7 +22,48 @@ async function createUser({ username, password, nickname }) {
   return rst.dataValues
 }
 
+async function getAllListsService(userid) {
+  // 连表查询，获取用户所有列表，其中包含列表和子项
+  const rst = await User.findAndCountAll({
+    where: {
+      id: userid
+    },
+    include: [
+      {
+        association: User.hasMany(List, {}),
+      },
+      {
+        association: List.hasMany(Item, {}),
+      }
+    ]
+  })
+  if (!rst.count) {
+    return 0
+  }
+  const res = {}
+  const temp = rst.rows[0].dataValues
+  res.id = temp.id
+  res.username = temp.username
+  res.nickname = temp.nickname
+  res.lists = []
+  temp.lists.forEach(item => {
+    const temp = item.dataValues
+    temp.items = []
+    res.lists.push(temp)
+  })
+  temp.items.forEach(item => {
+    const temp = item.dataValues
+    res.lists.forEach(i => {
+      if (i.id === temp.listid) {
+        i.items.push(temp)
+      }
+    })
+  })
+  return res
+}
+
 module.exports = {
   getUserInfo,
   createUser,
+  getAllListsService
 }

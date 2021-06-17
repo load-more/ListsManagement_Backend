@@ -39,4 +39,8 @@ module.exports = {
     errno: 10010,
     message: '添加子项失败'
   },
+  getAllListsErrorInfo: {
+    errno: 10011,
+    message: '获取所有列表失败'
+  },
 }

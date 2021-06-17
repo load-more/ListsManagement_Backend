@@ -3,7 +3,11 @@ const {
   createListService,
 } = require('../service/list')
 const {
-  createListErrorInfo
+  getAllListsService,
+} = require('../service/user')
+const {
+  createListErrorInfo,
+  getAllListsErrorInfo
 } = require('../model/ErrorInfo')
 
 async function createList({ title, description, userid }) {
@@ -14,6 +18,15 @@ async function createList({ title, description, userid }) {
   return new ErrorModel(createListErrorInfo)
 }
 
+async function getAllLists(userid) {
+  const rst = await getAllListsService(userid)
+  if (rst) {
+    return new SuccessModel(rst)
+  }
+  return new ErrorModel(getAllListsErrorInfo)
+}
+
 module.exports = {
   createList,
+  getAllLists,
 }

@@ -1,6 +1,7 @@
 const router = require('koa-router')()
 const { 
   createList,
+  getAllLists,
 } = require('../../controller/list')
 
 router.prefix('/api/lists')
@@ -13,6 +14,12 @@ router.post('/create', async (ctx, next) => {
     description,
     userid
   })
+})
+
+// 获取所有列表
+router.post('/getAll', async (ctx, next) => {
+  const { userid } = ctx.request.body
+  ctx.body = await getAllLists(userid)
 })
 
 module.exports = router
