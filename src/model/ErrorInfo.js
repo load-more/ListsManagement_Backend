@@ -34,5 +34,9 @@ module.exports = {
   createListErrorInfo: {
     errno: 10009,
     message: '创建列表失败'
-  }
+  },
+  addItemErrorInfo: {
+    errno: 10010,
+    message: '添加子项失败'
+  },
 }

@@ -11,7 +11,7 @@ async function createList({ title, description, userid }) {
   if (rst) {
     return new SuccessModel(rst)
   }
-  return new ErrorModel(createListService)
+  return new ErrorModel(createListErrorInfo)
 }
 
 module.exports = {

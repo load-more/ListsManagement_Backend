@@ -10,6 +10,7 @@ const cors = require('koa2-cors')
 const index = require('./src/routes/index')
 const users = require('./src/routes/api/user')
 const lists = require('./src/routes/api/list')
+const items = require('./src/routes/api/item')
 
 // CORS 跨域访问
 app.use(cors())
@@ -41,6 +42,7 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 app.use(lists.routes(), lists.allowedMethods())
+app.use(items.routes(), items.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
