@@ -24,6 +24,11 @@ const Item = seq.define('item', {
     type: DECIMAL,
     allowNull: false,
     comment: '状态，不为空，0为to do，1为done，2为deleted'
+  },
+  category: {
+    type: DECIMAL,
+    allowNull: false,
+    comment: '类别，不为空，0为生活，1为工作，2为学习，3为其他'
   }
 })
 

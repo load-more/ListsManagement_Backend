@@ -10,24 +10,26 @@ router.prefix('/api/items')
 
 // 添加子项
 router.post('/add', async (ctx, next) => {
-  const { title, description, userid, listid } = ctx.request.body
+  const { title, description, userid, listid, category } = ctx.request.body
   ctx.body = await addItem({
     title,
     description,
     userid,
     listid,
+    category,
     status: 0
   })
 })
 
 // 修改子项信息
 router.post('/edit', async (ctx, next) => {
-  const { itemid, title, description, status } = ctx.request.body
+  const { itemid, title, description, status, category } = ctx.request.body
   ctx.body = await editItem({
     itemid,
     title,
     description,
-    status
+    status,
+    category
   })
 })
 

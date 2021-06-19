@@ -12,8 +12,8 @@ const {
   finishItemErrorInfo
 } = require('../model/ErrorInfo')
 
-async function addItem({ title, description, userid, listid, status }) {
-  const rst = await addItemService({ title, description, userid, listid, status })
+async function addItem({ title, description, userid, listid, status, category }) {
+  const rst = await addItemService({ title, description, userid, listid, status, category })
   if (rst) {
     return new SuccessModel(rst)
   }
@@ -21,7 +21,7 @@ async function addItem({ title, description, userid, listid, status }) {
 }
 
 async function editItem({ itemid, title, description, status }) {
-  const rst = await editItemService({ itemid, title, description, status })
+  const rst = await editItemService({ itemid, title, description, status, category })
   if (rst[0]) {
     return new SuccessModel(rst)
   }

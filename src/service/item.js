@@ -1,12 +1,13 @@
 const Item = require('../db/model/item')
 
-async function addItemService({ title, description, userid, listid, status }) {
+async function addItemService({ title, description, userid, listid, status, category }) {
   const rst = await Item.create({
     title,
     description,
     userid,
     listid,
-    status
+    status,
+    category
   })
   return rst.dataValues
 }
@@ -15,7 +16,8 @@ async function editItemService({ itemid, title, description, status }) {
   const rst = await Item.update({
     title,
     description,
-    status
+    status,
+    category
   }, {
     where: {
       id: itemid
