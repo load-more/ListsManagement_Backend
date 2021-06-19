@@ -50,5 +50,13 @@ module.exports = {
   editItemErrorInfo: {
     errno: 10013,
     message: '编辑子项信息失败'
-  }
+  },
+  deleteListErrorInfo: {
+    errno: 10014,
+    message: '删除列表失败'
+  },
+  removeItemErrorInfo: {
+    errno: 10015,
+    message: '删除子项失败'
+  },
 }

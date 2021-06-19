@@ -3,6 +3,7 @@ const {
   createList,
   getAllLists,
   editList,
+  deleteList
 } = require('../../controller/list')
 
 router.prefix('/api/lists')
@@ -31,6 +32,12 @@ router.post('/edit', async (ctx, next) => {
     title,
     description
   })
+})
+
+// 删除列表
+router.post('/delete', async (ctx, next) => {
+  const { listid } = ctx.request.body
+  ctx.body = await deleteList(listid)
 })
 
 module.exports = router

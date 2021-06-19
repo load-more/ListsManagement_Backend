@@ -21,7 +21,17 @@ async function editListService({listid, title, description}) {
   return rst
 }
 
+async function deleteListService(listid) {
+  const rst = await List.destroy({
+    where: {
+      id: listid
+    }
+  })
+  return rst
+}
+
 module.exports = {
   createListService,
   editListService,
+  deleteListService,
 }

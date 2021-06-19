@@ -2,6 +2,7 @@ const { SuccessModel, ErrorModel } = require('../model/ResModel')
 const {
   createListService,
   editListService,
+  deleteListService
 } = require('../service/list')
 const {
   getAllListsService,
@@ -9,7 +10,8 @@ const {
 const {
   createListErrorInfo,
   getAllListsErrorInfo,
-  editListErrorInfo
+  editListErrorInfo,
+  deleteListErrorInfo
 } = require('../model/ErrorInfo')
 
 async function createList({ title, description, userid }) {
@@ -30,14 +32,23 @@ async function getAllLists(userid) {
 
 async function editList({ listid, title, description }) {
   const rst = await editListService({ listid, title, description })
-  if (rst) {
+  if (rst[0]) {
     return new SuccessModel(rst)
   }
   return new ErrorModel(editListErrorInfo)
+}
+
+async function deleteList(listid) {
+  const rst = await deleteListService(listid)
+  if (rst) {
+    return new SuccessModel(rst)
+  }
+  return new ErrorModel(deleteListErrorInfo)
 }
 
 module.exports = {
   createList,
   getAllLists,
   editList,
+  deleteList,
 }
