@@ -33,8 +33,20 @@ async function removeItemService(itemid) {
   return rst
 }
 
+async function finishItemService(itemid) {
+  const rst = await Item.update({
+    status: 1,
+  }, {
+    where: {
+      id: itemid
+    }
+  })
+  return rst
+}
+
 module.exports = {
   addItemService,
   editItemService,
-  removeItemService
+  removeItemService,
+  finishItemService
 }

@@ -59,4 +59,8 @@ module.exports = {
     errno: 10015,
     message: '删除子项失败'
   },
+  finishItemErrorInfo: {
+    errno: 10016,
+    message: '完成子项失败'
+  },
 }

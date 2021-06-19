@@ -2,12 +2,14 @@ const { SuccessModel, ErrorModel } = require('../model/ResModel')
 const {
   addItemService,
   editItemService,
-  removeItemService
+  removeItemService,
+  finishItemService
 } = require('../service/item')
 const {
   addItemErrorInfo,
   editItemErrorInfo,
-  removeItemErrorInfo
+  removeItemErrorInfo,
+  finishItemErrorInfo
 } = require('../model/ErrorInfo')
 
 async function addItem({ title, description, userid, listid, status }) {
@@ -34,8 +36,17 @@ async function removeItem(itemid) {
   return new ErrorModel(removeItemErrorInfo)
 }
 
+async function finishItem(itemid) {
+  const rst = await finishItemService(itemid)
+  if (rst[0]) {
+    return new SuccessModel(rst)
+  }
+  return new ErrorModel(finishItemErrorInfo)
+}
+
 module.exports = {
   addItem,
   editItem,
-  removeItem
+  removeItem,
+  finishItem
 }
