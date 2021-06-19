@@ -46,5 +46,9 @@ module.exports = {
   editListErrorInfo: {
     errno: 10012,
     message: '编辑列表信息失败'
+  },
+  editItemErrorInfo: {
+    errno: 10013,
+    message: '编辑子项信息失败'
   }
 }

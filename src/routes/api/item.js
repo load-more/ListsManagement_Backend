@@ -1,6 +1,7 @@
 const router = require('koa-router')()
 const { 
   addItem,
+  editItem
 } = require('../../controller/item')
 
 router.prefix('/api/items')
@@ -14,6 +15,17 @@ router.post('/add', async (ctx, next) => {
     userid,
     listid,
     status: 0
+  })
+})
+
+// 修改子项信息
+router.post('/edit', async (ctx, next) => {
+  const { itemid, title, description, status } = ctx.request.body
+  ctx.body = await editItem({
+    itemid,
+    title,
+    description,
+    status
   })
 })
 
