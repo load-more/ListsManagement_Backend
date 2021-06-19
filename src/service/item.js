@@ -12,7 +12,7 @@ async function addItemService({ title, description, userid, listid, status, cate
   return rst.dataValues
 }
 
-async function editItemService({ itemid, title, description, status }) {
+async function editItemService({ itemid, title, description, status, category }) {
   const rst = await Item.update({
     title,
     description,

@@ -20,7 +20,7 @@ async function addItem({ title, description, userid, listid, status, category })
   return new ErrorModel(addItemErrorInfo)
 }
 
-async function editItem({ itemid, title, description, status }) {
+async function editItem({ itemid, title, description, status, category }) {
   const rst = await editItemService({ itemid, title, description, status, category })
   if (rst[0]) {
     return new SuccessModel(rst)
