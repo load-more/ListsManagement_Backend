@@ -9,6 +9,19 @@ async function createListService({ title, description, userid }) {
   return rst.dataValues
 }
 
+async function editListService({listid, title, description}) {
+  const rst = await List.update({
+    title,
+    description
+  }, {
+    where: {
+      id: listid
+    }
+  })
+  return rst
+}
+
 module.exports = {
   createListService,
+  editListService,
 }

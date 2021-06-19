@@ -60,8 +60,7 @@ async function getAllListsService(userid) {
     })
     res.lists.push(temp)
   })
-  console.log(res.lists[2].items);
-  // return res
+  return res
 }
 
 module.exports = {

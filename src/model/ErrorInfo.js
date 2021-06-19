@@ -43,4 +43,8 @@ module.exports = {
     errno: 10011,
     message: '获取所有列表失败'
   },
+  editListErrorInfo: {
+    errno: 10012,
+    message: '编辑列表信息失败'
+  }
 }
