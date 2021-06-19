@@ -1,7 +1,8 @@
 const router = require('koa-router')()
 const { 
   addItem,
-  editItem
+  editItem,
+  removeItem
 } = require('../../controller/item')
 
 router.prefix('/api/items')
@@ -27,6 +28,12 @@ router.post('/edit', async (ctx, next) => {
     description,
     status
   })
+})
+
+// 删除子项
+router.post('/remove', async (ctx, next) => {
+  const { itemid } = ctx.request.body
+  ctx.body = await removeItem(itemid)
 })
 
 module.exports = router

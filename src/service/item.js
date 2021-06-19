@@ -24,7 +24,17 @@ async function editItemService({ itemid, title, description, status }) {
   return rst
 }
 
+async function removeItemService(itemid) {
+  const rst = await Item.destroy({
+    where: {
+      id: itemid
+    }
+  })
+  return rst
+}
+
 module.exports = {
   addItemService,
-  editItemService
+  editItemService,
+  removeItemService
 }
